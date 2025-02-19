@@ -3,7 +3,7 @@
 1. Clone the Local Ingress repository.
 
 ```console
-git clone https://github.com/skippysoft/local-ingress && cd local-ingress
+git clone https://github.com/skippyware/local-ingress && cd local-ingress
 ```
 
 2. Follow the [installation instructions](./install.md) for your system.
@@ -36,8 +36,8 @@ services:
       - "traefik.http.services.example-app.loadbalancer.server.port=80"
       - "traefik.docker.network=ingress-net"
     networks:
-      - ingress-net
-      - default  # include any other docker networks required
+      - default  # include any other docker networks first
+      - ingress-net  # include ingress-net last
 ```
 
 6. Start projects/services.
