@@ -1,0 +1,12 @@
+.:53 {
+    log
+    forward acme-dns.{$ACME_DNS_ZONE} /opt/coredns/zones/resolvers/acme-dns.conf
+    auto {$DNS_ZONE} {
+        directory /opt/coredns/zones/dynamic db\.(.*) {1}
+        reload 5s
+    }
+    forward . /etc/resolv.conf
+    loop
+    reload
+    errors
+}

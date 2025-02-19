@@ -1,0 +1,167 @@
+---
+services:
+  acme-dns:
+    image: skippyprime/acme-dns:v1.0
+    restart: on-failure
+    command: acme-dns
+    entrypoint: /docker-entrypoint.sh
+    environment:
+      ACME_DNS_ZONE: "${ACME_DNS_ZONE:-local}"
+    networks:
+      default:
+        aliases:
+          - "auth.acme-dns.${ACME_DNS_ZONE:-local}"
+          - "acme-dns.${ACME_DNS_ZONE:-local}"
+    volumes:
+      - ./acme-dns/docker-entrypoint.sh:/docker-entrypoint.sh:ro
+      - ./acme-dns/config.cfg:/data/config.cfg:ro
+      - acme-dns-conf-data:/etc/acme-dns:rw
+      - acme-dns-data:/var/lib/acme-dns:rw
+    healthcheck:
+      test:
+        - "CMD-SHELL"
+        - "wget --no-verbose --tries=1 --spider http://localhost:80/health || exit 1"
+      interval: 5s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+  dns-zone:
+    image: skippyprime/acme-dns-store:v1.0
+    restart: on-failure
+    command: /acme-dns-store
+    entrypoint: /docker-entrypoint.sh
+    environment:
+      DNS_ZONE: "${DNS_ZONE:-test}"
+    volumes:
+      - ./dns-zone/docker-entrypoint.sh:/docker-entrypoint.sh:ro
+      - dns-zone-accounts-data:/data/accounts:rw
+      - dns-zone-zones-data:/data/zones:rw
+    networks:
+      - default
+    extra_hosts:
+      - "_gw:host-gateway" # required to dynamically resolve the host gateway
+    healthcheck:
+      test:
+        - "CMD-SHELL"
+        - "curl -f http://localhost:8080/health || exit 1"
+      interval: 5s
+      timeout: 2s
+      retries: 5
+      start_period: 5s
+    depends_on:
+      acme-dns:
+        condition: service_healthy
+        restart: true # restart with acme-dns so that the new ip can be resolved
+
+  coredns:
+    image: coredns/coredns:1.11.3
+    restart: on-failure
+    command: -conf /opt/coredns/Corefile
+    environment:
+      DNS_ZONE: "${DNS_ZONE:-test}"
+      ACME_DNS_ZONE: "${ACME_DNS_ZONE:-local}"
+    volumes:
+      - ./coredns/Corefile:/opt/coredns/Corefile:ro
+      - dns-zone-zones-data:/opt/coredns/zones:ro
+    ports:
+      - ${HOST_DNS_BIND:-127.0.0.1:1053}:53/udp
+    networks:
+      default:
+        aliases:
+          - ns-local.${DNS_ZONE:-test}
+    depends_on:
+      dns-zone:
+        condition: service_healthy
+      acme-dns:
+        condition: service_healthy
+        restart: true
+
+  stepca:
+    image: smallstep/step-ca:0.28.1
+    restart: on-failure
+    command: /shim.sh
+    environment:
+      DOCKER_STEPCA_INIT_NAME: "Local Development"
+      DOCKER_STEPCA_INIT_PROVISIONER_NAME: "Local Administrator"
+      DOCKER_STEPCA_INIT_ADMIN_SUBJECT: "admin"
+      DOCKER_STEPCA_INIT_DNS_NAMES: "localhost,stepca,acme"
+      DOCKER_STEPCA_INIT_PASSWORD: "password"
+      DOCKER_STEPCA_INIT_ACME: "true"
+      STEPDEBUG: "0"
+    networks:
+      - default
+    volumes:
+      - stepca-data:/home/step:rw
+      - ./stepca/shim.sh:/shim.sh:ro
+    healthcheck:
+      test:
+        - "CMD-SHELL"
+        - "curl -f -k https://stepca:9000/health || exit 1"
+      interval: 5s
+      timeout: 2s
+      retries: 5
+      start_period: 20s
+    depends_on:
+      coredns:
+        condition: service_started
+
+  traefik:
+    # image: "traefik:v3.3"
+    build:
+      dockerfile: ./traefik/Dockerfile
+    restart: on-failure
+    environment:
+      LEGO_CA_CERTIFICATES: /stepca/certs/root_ca.crt
+      ACME_DNS_API_BASE: http://acme-dns:80
+      ACME_DNS_STORAGE_BASE_URL: http://dns-zone:8080
+    command:
+      - traefik
+      # - "--log.level=DEBUG"
+      - "--core.defaultRuleSyntax=${TRAEFIK_RULE_SYNTAX:-v3}"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.usebindportip=true"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.default.acme.dnschallenge.provider=acme-dns"
+      - "--certificatesresolvers.default.acme.dnschallenge.propagation.delayBeforeChecks=5s"
+      - "--certificatesresolvers.default.acme.email=admin.acme-dns.${ACME_DNS_ZONE:-local}"
+      - "--certificatesresolvers.default.acme.caserver=https://stepca:9000/acme/acme/directory"
+      - "--certificatesresolvers.default.acme.dnschallenge=true"
+      - "--certificatesresolvers.default.acme.tlschallenge=false"
+      - "--certificatesresolvers.default.acme.httpChallenge=true"
+      - "--certificatesresolvers.default.acme.httpChallenge.entryPoint=web"
+    entrypoint: /docker-entrypoint.sh
+    ports:
+      - "${HOST_BIND_ADDRESS:-0.0.0.0}:80:80"
+      - "${HOST_BIND_ADDRESS:-0.0.0.0}:443:443"
+      - "127.0.0.1:8080:8080" # traefik ui
+    networks:
+      - default
+      - ingress-net
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/docker-entrypoint.sh:/docker-entrypoint.sh:ro
+      - traefik-acme-data:/etc/traefik/acme:rw
+      - stepca-data:/stepca:ro
+    depends_on:
+      stepca:
+        condition: service_healthy
+      coredns:
+        condition: service_started
+        restart: true # restart with coredns so that the new ip can be resolved
+
+networks:
+  default:
+  ingress-net:
+    name: ingress-net
+
+volumes:
+  acme-dns-conf-data:
+  acme-dns-data:
+  dns-zone-accounts-data:
+  dns-zone-zones-data:
+  stepca-data:
+  traefik-acme-data:

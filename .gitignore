@@ -1,0 +1,6 @@
+/.env
+/system-config/*
+!/system-config/.gitkeep
+!/system-config/tools
+/docs/.venv
+/docs/site
