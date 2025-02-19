@@ -1,0 +1,54 @@
+site_name: Local Ingress
+repo_url: https://github.com/skippyware/local-ingress
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    - navigation.indexes
+    - content.tabs.link
+    - content.code.select
+    - content.code.copy
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - tables
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - sane_lists
+nav:
+  - Home:
+    - index.md
+  - Getting Started:
+    - getting-started/index.md
+    - Installation: getting-started/install.md
+    - Root CA: getting-started/root-ca.md
+    - Managing Stack: getting-started/stack.md
+    - Uninstall: getting-started/uninstall.md
+  - Stack:
+    - stack/index.md
