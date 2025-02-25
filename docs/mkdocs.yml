@@ -2,7 +2,7 @@ site_name: Local Ingress
 repo_url: https://github.com/skippyware/local-ingress
 theme:
   logo: assets/images/logo.svg
-  favicon: assets/images/favicon.png
+  favicon: assets/images/favicon.ico
   name: material
   palette:
     - scheme: default
