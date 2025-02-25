@@ -6,7 +6,7 @@ In some cases it may be required to configure other services to trust the Local 
 make ca-extract
 ```
 
-or
+-OR-
 
 ```console
 docker compose cp \

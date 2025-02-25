@@ -6,12 +6,12 @@ services:
     command: acme-dns
     entrypoint: /docker-entrypoint.sh
     environment:
-      ACME_DNS_ZONE: "${ACME_DNS_ZONE:-local}"
+      ACME_DNS_ZONE: "${LOCAL_INGRESS_ACME_DNS_ZONE:-local}"
     networks:
       default:
         aliases:
-          - "auth.acme-dns.${ACME_DNS_ZONE:-local}"
-          - "acme-dns.${ACME_DNS_ZONE:-local}"
+          - "auth.acme-dns.${LOCAL_INGRESS_ACME_DNS_ZONE:-local}"
+          - "acme-dns.${LOCAL_INGRESS_ACME_DNS_ZONE:-local}"
     volumes:
       - ./acme-dns/docker-entrypoint.sh:/docker-entrypoint.sh:ro
       - ./acme-dns/config.cfg:/data/config.cfg:ro
@@ -32,7 +32,7 @@ services:
     command: /acme-dns-store
     entrypoint: /docker-entrypoint.sh
     environment:
-      DNS_ZONE: "${DNS_ZONE:-test}"
+      DNS_ZONE: "${LOCAL_INGRESS_DNS_ZONE:-test}"
     volumes:
       - ./dns-zone/docker-entrypoint.sh:/docker-entrypoint.sh:ro
       - dns-zone-accounts-data:/data/accounts:rw
@@ -59,17 +59,17 @@ services:
     restart: on-failure
     command: -conf /opt/coredns/Corefile
     environment:
-      DNS_ZONE: "${DNS_ZONE:-test}"
-      ACME_DNS_ZONE: "${ACME_DNS_ZONE:-local}"
+      DNS_ZONE: "${LOCAL_INGRESS_DNS_ZONE:-test}"
+      ACME_DNS_ZONE: "${LOCAL_INGRESS_ACME_DNS_ZONE:-local}"
     volumes:
       - ./coredns/Corefile:/opt/coredns/Corefile:ro
       - dns-zone-zones-data:/opt/coredns/zones:ro
     ports:
-      - ${HOST_DNS_BIND:-127.0.0.1:1053}:53/udp
+      - 127.0.0.1:${LOCAL_INGRESS_DNS_PORT:-1053}:53/udp
     networks:
       default:
         aliases:
-          - ns-local.${DNS_ZONE:-test}
+          - ns-local.${LOCAL_INGRESS_DNS_ZONE:-test}
     depends_on:
       dns-zone:
         condition: service_healthy
@@ -88,7 +88,7 @@ services:
       DOCKER_STEPCA_INIT_DNS_NAMES: "localhost,stepca,acme"
       DOCKER_STEPCA_INIT_PASSWORD: "password"
       DOCKER_STEPCA_INIT_ACME: "true"
-      STEPDEBUG: "0"
+      STEPDEBUG: "${LOCAL_INGRESS_STEPCA_DEBUG:-0}"
     networks:
       - default
     volumes:
@@ -107,7 +107,7 @@ services:
         condition: service_started
 
   traefik:
-    # image: "traefik:v3.3"
+    # image: "traefik:v3.3.4"
     build:
       dockerfile: ./traefik/Dockerfile
     restart: on-failure
@@ -117,8 +117,8 @@ services:
       ACME_DNS_STORAGE_BASE_URL: http://dns-zone:8080
     command:
       - traefik
-      # - "--log.level=DEBUG"
-      - "--core.defaultRuleSyntax=${TRAEFIK_RULE_SYNTAX:-v3}"
+      - "--log.level=${LOCAL_INGRESS_TRAEFIK_LOG_LEVEL:-WARN}"
+      - "--core.defaultRuleSyntax=${LOCAL_INGRESS_TRAEFIK_RULE_SYNTAX:-v3}"
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
@@ -127,7 +127,7 @@ services:
       - "--entrypoints.websecure.address=:443"
       - "--certificatesresolvers.default.acme.dnschallenge.provider=acme-dns"
       - "--certificatesresolvers.default.acme.dnschallenge.propagation.delayBeforeChecks=5s"
-      - "--certificatesresolvers.default.acme.email=admin.acme-dns.${ACME_DNS_ZONE:-local}"
+      - "--certificatesresolvers.default.acme.email=admin.acme-dns.${LOCAL_INGRESS_ACME_DNS_ZONE:-local}"
       - "--certificatesresolvers.default.acme.caserver=https://stepca:9000/acme/acme/directory"
       - "--certificatesresolvers.default.acme.dnschallenge=true"
       - "--certificatesresolvers.default.acme.tlschallenge=false"
@@ -135,8 +135,8 @@ services:
       - "--certificatesresolvers.default.acme.httpChallenge.entryPoint=web"
     entrypoint: /docker-entrypoint.sh
     ports:
-      - "${HOST_BIND_ADDRESS:-0.0.0.0}:80:80"
-      - "${HOST_BIND_ADDRESS:-0.0.0.0}:443:443"
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
       - "127.0.0.1:8080:8080" # traefik ui
     networks:
       - default
