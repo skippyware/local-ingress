@@ -52,3 +52,10 @@ nav:
     - Uninstall: getting-started/uninstall.md
   - Stack:
     - stack/index.md
+    - Customize: stack/customize.md
+  - Examples:
+    - examples/index.md
+    - "Basic HTTP": examples/basic-http.md
+    - "Basic HTTPS": examples/basic-https.md
+    - "Multi Service": examples/multi-service.md
+    - "Subdomain Routing": examples/subdomain-routing.md
