@@ -107,9 +107,7 @@ services:
         condition: service_started
 
   traefik:
-    # image: "traefik:v3.3.4"
-    build:
-      dockerfile: ./traefik/Dockerfile
+    image: "traefik:v3.3.4"
     restart: on-failure
     environment:
       LEGO_CA_CERTIFICATES: /stepca/certs/root_ca.crt
