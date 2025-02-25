@@ -10,7 +10,7 @@ This example may represent a web application with the frontend and backend split
 
 ```yaml
 services:
-  www:
+  frontend:
     image: nginx:1.27-alpine
     networks:
       - default
@@ -34,7 +34,7 @@ networks:
 
 ```yaml
 services:
-  www:
+  backend:
     image: nginx:1.27-alpine
     networks:
       - default
