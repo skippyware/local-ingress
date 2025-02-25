@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../getting-started/uninstall/">
+        <link rel="prev" href="../stack/customize/">
       
       
-        <link rel="next" href="customize/">
+        <link rel="next" href="basic-http/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Stack - Local Ingress</title>
+        <title>Examples - Local Ingress</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#stack" class="md-skip">
+        <a href="#examples" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Stack
+              Examples
             
           </span>
         </div>
@@ -251,13 +251,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../stack/" class="md-tabs__link">
           
   
     
@@ -273,11 +271,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../examples/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
     
@@ -554,8 +554,6 @@
       
   
   
-    
-  
   
   
     
@@ -570,22 +568,19 @@
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
+            <a href="../stack/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -597,13 +592,13 @@
             </a>
             
               
-              <label class="md-nav__link md-nav__link--active" for="__nav_3" id="__nav_3_label" tabindex="">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Stack
@@ -619,7 +614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="customize/" class="md-nav__link">
+      <a href="../stack/customize/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -645,6 +640,8 @@
       
   
   
+    
+  
   
   
     
@@ -665,19 +662,22 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../examples/" class="md-nav__link ">
+            <a href="./" class="md-nav__link md-nav__link--active">
               
   
   <span class="md-ellipsis">
@@ -689,13 +689,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+              <label class="md-nav__link md-nav__link--active" for="__nav_4" id="__nav_4_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Examples
@@ -711,7 +711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../examples/basic-http/" class="md-nav__link">
+      <a href="basic-http/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -733,7 +733,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../examples/basic-https/" class="md-nav__link">
+      <a href="basic-https/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -755,7 +755,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../examples/multi-service/" class="md-nav__link">
+      <a href="multi-service/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -777,7 +777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../examples/subdomain-routing/" class="md-nav__link">
+      <a href="subdomain-routing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -826,27 +826,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ingress" class="md-nav__link">
+  <a href="#define-the-ingress-network" class="md-nav__link">
     <span class="md-ellipsis">
-      Ingress
+      Define the Ingress Network
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#pki" class="md-nav__link">
+  <a href="#add-service-labels" class="md-nav__link">
     <span class="md-ellipsis">
-      PKI
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dns" class="md-nav__link">
-    <span class="md-ellipsis">
-      DNS
+      Add Service Labels
     </span>
   </a>
   
@@ -871,33 +862,46 @@
   
 
 
-<h1 id="stack">Stack</h1>
-<p>Local Ingress is primarily built upon the great work of other open source
-initiatives.  The stack consists of 5 services that make this possible.</p>
+<h1 id="examples">Examples</h1>
+<p>The following is a collection of some exmaple use cases for services with Local Ingress.  To integrate with Local Ingress, a compose file needs to define the shared ingress network and define Traefik container lables to define the routing.</p>
+<h2 id="define-the-ingress-network">Define the Ingress Network</h2>
+<p>All projects and services that use Local Ingress must define the shared bridge network.  This is required so that Traefik can forward to the container when proxying tarffic/requests.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The shared bridge network will be created if it doesn't exist.  The shared bridge network will fail to remove if any other container is still attached to the network.  This is expected behavior and should not be cause for concern.</p>
+</div>
+<div class="language-yaml highlight"><span class="filename">docker-compose.yml</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">networks</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">ingress-net</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-net</span>
+</span></code></pre></div>
+<p>The network has a defined name so that Docker Compose does not assign an auto-generated name based on the project/directory.</p>
+<h2 id="add-service-labels">Add Service Labels</h2>
+<p>Traefik uses service labels to add services, define routes, and manage certificates (if requested).  The stack defines identifiers for the following:</p>
 <ul>
-<li><strong>Traefik</strong> - Ingress service.</li>
-<li><strong>Step CA</strong> - Certificate manager and ACME provider.</li>
-<li><strong>ACME DNS</strong> - ACME DNS challenge service.</li>
-<li><strong>CoreDNS</strong> - Primary DNS forwarder.</li>
-<li><strong>DNS Zone</strong> - Simple ACME DNS HTTP storage service and DNS Zone template engine.</li>
+<li><strong>entrypoints</strong> - <code>web</code> (HTTP) and <code>websecure</code> (HTTPS)</li>
+<li><strong>certresolver</strong> - <code>default</code> (supports HTTP-01 and DNS-01 challenegs)</li>
+<li><strong>network</strong> - <code>ingress-net</code></li>
 </ul>
-<h2 id="ingress">Ingress</h2>
-<p>Traefik proxy provides all ingress functionality.  Services are automatically discovered and the configuration loaded via the <a href="https://doc.traefik.io/traefik/providers/docker/">Docker provider</a>.  The Traefik Docker provider uses container labels to retrieve routing configuration, service port, TLS configuration (optional), etc.</p>
-<p>Local Ingress disables containers by default from being attached to the Traefik proxy.  As it is common for projects/services to include a number of internal support services (e.g. database, cache, queues, etc.), many containers for a project should not be exposed.  Only those containers that should be exposed via Traefik will be explicity marked via container labels.</p>
-<p>Local Ingress exposes the following ports:</p>
-<ul>
-<li><strong>80 (HTTP)</strong> - Unencrypted HTTP traffic.  Also used for ACME HTTP-01 challeneges by Traefik and Step CA.</li>
-<li><strong>443 (HTTPS)</strong> - TLS encrypted HTTP traffic.</li>
-<li><strong>8080 (HTTP Alt)</strong> - Traefik proxy dashboard.</li>
-</ul>
-<p>Provided By: <a href="https://traefik.io/traefik/">Traefik</a></p>
-<h2 id="pki">PKI</h2>
-<p>A simple PKI, consisting of Root and Intermediate CAs, is created on your system.  For security, no PKI artifacts or key material exists staically or is provided by Local Ingress.  At any time this PKI can be re-created by stopping the stack and destroying the container volumes.  The stack will reinitialize and create a new PKI.</p>
-<p>Provided By: <a href="https://smallstep.com/docs/step-ca/">Step CA</a></p>
-<h2 id="dns">DNS</h2>
-<p>DNS is what makes Local Ingress possible across various project/service repositories.  DNS must be resolvable from the host system as well as within each container.  The host configuration makes it possible for the default Docker DNS resolver to expose the zone without any additional DNS overrides in each project/service.</p>
-<p>The stack DNS resolver is configured on the host as a resolver for the zone (default <code>.test</code>).</p>
-<p>Provided By: <a href="https://coredns.io/">CoreDNS</a>, <a href="https://github.com/joohoi/acme-dns">ACME DNS</a>, and DNS Zone</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Each service should define a unique router and service name.  It is suggested to namespace them by project name for uniqueness.</p>
+</div>
+<p>The following shows a simple example to expose a service at the URL <code>https://app.example.test</code>.</p>
+<div class="language-yaml highlight"><span class="filename">docker-compose.yml</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">app</span><span class="p">:</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.enable=true&quot;</span><span class="w">  </span><span class="c1"># expose this service via traefik</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.http.routers.example-app.rule=Host(`app.example.test`)&quot;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.http.routers.example-app.entrypoints=websecure&quot;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.http.routers.example-app.tls=true&quot;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.http.routers.example-app.tls.certresolver=default&quot;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.http.routers.example-app.service=example-app&quot;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.http.services.example-app.loadbalancer.server.port=80&quot;</span><span class="w">  </span><span class="c1"># the port the service listens on internally</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;traefik.docker.network=ingress-net&quot;</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w">  </span><span class="c1"># include any other docker networks first</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ingress-net</span><span class="w">  </span><span class="c1"># include ingress-net last</span>
+</span></code></pre></div>
 
 
 

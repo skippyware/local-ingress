@@ -270,6 +270,26 @@
   
 
       
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/" class="md-tabs__link">
+          
+  
+    
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -495,9 +515,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#build-docker-images-optional" class="md-nav__link">
+  <a href="#set-dns-resolver-port-windows-only" class="md-nav__link">
     <span class="md-ellipsis">
-      Build Docker Images (Optional)
+      Set DNS Resolver Port (Windows Only)
     </span>
   </a>
   
@@ -625,6 +645,8 @@
           
         
       
+        
+      
     
     
       
@@ -651,6 +673,11 @@
 
             </a>
             
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
           </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
@@ -660,6 +687,186 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stack/customize/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Customize
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../examples/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/basic-http/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic HTTP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/basic-https/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic HTTPS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/multi-service/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi Service
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/subdomain-routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Subdomain Routing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
               
             
           </ul>
@@ -696,9 +903,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#build-docker-images-optional" class="md-nav__link">
+  <a href="#set-dns-resolver-port-windows-only" class="md-nav__link">
     <span class="md-ellipsis">
-      Build Docker Images (Optional)
+      Set DNS Resolver Port (Windows Only)
     </span>
   </a>
   
@@ -756,9 +963,9 @@
 <li><strong>DNS Zone Reoslver</strong> - This allows the host to send DNS queries for our zone to the stack.</li>
 <li><strong>Loopback Alias to Docker Desktop Subnet Gateway (MacOS and Windows only)</strong> - Docker Desktop runs in a Virtual Machine on MacOS and Windows.  This allows the MacOS/Windows host to understand that Docker's magic <code>host-gateway</code> IP address is for the loopback interface.</li>
 </ul>
-<h2 id="build-docker-images-optional">Build Docker Images (Optional)</h2>
-<p>This is optional as Docker Compose will build the images on first run.  It may help to do this in a separate step to better track command output.</p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="go">docker compose build</span>
+<h2 id="set-dns-resolver-port-windows-only">Set DNS Resolver Port (Windows Only)</h2>
+<p>Windows DNS client rules don't support specifying a port for the nameserver.  As a result, the stack must be configured to expose DNS resolver on the standard port 53.  The compose file supports customization via environment variables.</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="go">echo &quot;LOCAL_INGRESS_DNS_PORT=53&quot; &gt; .env</span>
 </span></code></pre></div>
 <h2 id="generate-system-configuration">Generate System Configuration</h2>
 <div class="admonition note">
@@ -769,22 +976,15 @@ for the loopback interface.  It isn't common for the Docker Desktop
 subnet to change unless you have a collision with a local network.</p>
 </div>
 <p>This will run a container to get the Docker <code>host-gateway</code> IP address and template out system configuration files.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="macos" name="__tabbed_1" type="radio" /><input id="linux" name="__tabbed_1" type="radio" /><input id="windows" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="macos">MacOS</label><label for="linux">Linux</label><label for="windows">Windows</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="language-console highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="go">make system-config-generate</span>
+<p><strong>Manual</strong></p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="go">docker compose run --rm --entrypoint=&#39;&#39; --no-deps \</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="go">    -v &quot;${PWD}/system-config:/system-config&quot; \</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="go">    -v &quot;${PWD}/dns-zone/system-config.sh:/system-config.sh&quot; \</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="go">    -w /system-config dns-zone /system-config.sh</span>
 </span></code></pre></div>
-</div>
-<div class="tabbed-block">
+<p><strong>Automated</strong></p>
 <div class="language-console highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="go">make system-config-generate</span>
 </span></code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="language-console highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="go">make system-config-generate</span>
-</span></code></pre></div>
-</div>
-</div>
-</div>
 <p>Generated files:</p>
 <table>
 <thead>
@@ -805,59 +1005,69 @@ subnet to change unless you have a collision with a local network.</p>
 </tbody>
 </table>
 <h2 id="add-dns-resolver">Add DNS Resolver</h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="macos_1" name="__tabbed_2" type="radio" /><input id="linux_1" name="__tabbed_2" type="radio" /><input id="windows_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="macos_1">MacOS</label><label for="linux_1">Linux</label><label for="windows_1">Windows</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="macos" name="__tabbed_1" type="radio" /><input id="linux" name="__tabbed_1" type="radio" /><input id="windows" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="macos">MacOS</label><label for="linux">Linux</label><label for="windows">Windows</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
+<p>Add a DNS rule to use the stack resolver for all <code>.test</code> domains.</p>
 <p><strong>Manual</strong></p>
 <p>With root priviledges, open <code>/etc/resolver/test</code> and add the following:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>nameserver 127.0.0.1
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>port 1053
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>nameserver 127.0.0.1
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>port 1053
 </span></code></pre></div>
+<p>-OR-</p>
 <p><strong>Automated</strong></p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="go">cat &lt;&lt;EOF |</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="go">nameserver 127.0.0.1</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="go">port 1053</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="go">EOF</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="go">sudo tee /etc/resolver/test &gt;/dev/null</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="go">cat &lt;&lt;EOF |</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="go">nameserver 127.0.0.1</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="go">port 1053</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="go">EOF</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="go">sudo tee /etc/resolver/test &gt;/dev/null</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
+<p>Add a DNS rule to use the stack resolver for all <code>.test</code> domains.</p>
 <p><strong>systemd-resolved</strong></p>
 <p>With root priviledges, open <code>/etc/systemd/resolved.conf</code> and add the following:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>[Resolve]
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>DNS=127.0.0.1:1053
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Domains=~test
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>[Resolve]
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>DNS=127.0.0.1:1053
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Domains=~test
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="language-console highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="go">make system-config-generate</span>
+<p>Add a DNS rule to use the stack resolver for all <code>.test</code> domains.  This will require Administrator priviledges.</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="go">Add-DnsClientNrptRule -Namespace &quot;.test&quot; -NameServers &quot;127.0.0.1&quot; -Comment &quot;Local Ingress DNS Resolver&quot;</span>
 </span></code></pre></div>
 </div>
 </div>
 </div>
 <h2 id="alias-loopback-interface">Alias Loopback Interface</h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="macos_2" name="__tabbed_3" type="radio" /><input id="linux_2" name="__tabbed_3" type="radio" /><input id="windows_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="macos_2">MacOS</label><label for="linux_2">Linux</label><label for="windows_2">Windows</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="macos_1" name="__tabbed_2" type="radio" /><input id="linux_1" name="__tabbed_2" type="radio" /><input id="windows_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="macos_1">MacOS</label><label for="linux_1">Linux</label><label for="windows_1">Windows</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
+<p>MacOS will clear the loopback IP alias on restart.  The following steps will add a launch daemon definition to alias the Docker Desktop gateway IP address on boot.</p>
 <p><strong>Manual</strong></p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="go">sudo install -g wheel -o root -m 0644 \</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="go">    ./system-config/darwin/org.user.lo0-docker-gateway-alias.plist \</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="go">    /Library/LaunchDaemons/org.user.lo0-docker-gateway-alias.plist</span>
+<p>Install the launch daemon definition.</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="go">sudo install -g wheel -o root -m 0644 \</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="go">    ./system-config/darwin/org.user.lo0-docker-gateway-alias.plist \</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="go">    /Library/LaunchDaemons/org.user.lo0-docker-gateway-alias.plist</span>
 </span></code></pre></div>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="go">sudo launchctl load \</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="go">    /Library/LaunchDaemons/org.user.lo0-docker-gateway-alias.plist</span>
+<p>Load the launch daemon.</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="go">sudo launchctl load \</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="go">    /Library/LaunchDaemons/org.user.lo0-docker-gateway-alias.plist</span>
 </span></code></pre></div>
+<p>-OR-</p>
 <p><strong>Automated</strong></p>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="go">make system-config</span>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="go">make system-config</span>
 </span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<p><em>Not required!</em></p>
+<p>Not required!  Docker doesn't run inside a Virtual Machine on Linux.  The Docker bridge network is directly reachable.</p>
 </div>
 <div class="tabbed-block">
-<div class="language-console highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="go">type system-config\docker.gateway</span>
+<p>Print the Docker Desktop gateway IP address.</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="go">type system-config\docker.gateway</span>
 </span></code></pre></div>
-<div class="language-console highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="go">netsh interface ip add address &quot;Loopback&quot; DOCKER_GW_ADDRESS 255.255.255.0</span>
+<p>Add an alias for the Docker Desktop gateway IP address to the Loopback interface.  This will require Administrator priviledges.</p>
+<div class="language-console highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="go">netsh interface ip add address &quot;Loopback&quot; DOCKER_GW_ADDRESS 255.255.255.255</span>
 </span></code></pre></div>
 </div>
 </div>

@@ -268,6 +268,26 @@
   
 
       
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="examples/" class="md-tabs__link">
+          
+  
+    
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -546,6 +566,8 @@
           
         
       
+        
+      
     
     
       
@@ -572,6 +594,11 @@
 
             </a>
             
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
           </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
@@ -581,6 +608,186 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="stack/customize/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Customize
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="examples/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="examples/basic-http/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic HTTP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="examples/basic-https/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic HTTPS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="examples/multi-service/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi Service
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="examples/subdomain-routing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Subdomain Routing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
               
             
           </ul>
@@ -610,6 +817,32 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How it works
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -628,16 +861,20 @@
 
 
 <h1 id="local-ingress">Local Ingress</h1>
-<p>Local Ingress is an opinionated stack aimed at making it easier to run multiple
-containerized projects and services locally.</p>
+<p>Local Ingress is an opinionated stack aimed at making it easier to run multiple containerized projects and services locally.  Local Ingress is designed to be used with the <code>.test</code> TLD (a special purpose, reserved TLD) to avoid conflict with other TLDs.</p>
 <p>The key features are:</p>
 <ul>
 <li><strong>Simple</strong> - Services are exposed on standard ports (80 - HTTP, and 443 - HTTPS) without conflict.</li>
 <li><strong>Routing</strong> - Services define their own routes via Host, Headers, Path, Params, etc. using <a href="https://traefik.io/traefik/">Traefik</a> rules.</li>
-<li><strong>DNS</strong> - Services can resolve DNS entries for other exposed services.</li>
+<li><strong>DNS</strong> - Resolve DNS on both the host and within service containers.</li>
 <li><strong>TLS</strong> - Services can choose to expose behind HTTPS listener with automatic certificate enrollment and renewal.  Wildcard certificates are fully supported.</li>
 <li><strong>Decoupled</strong> - Services manage their own configurations via Docker Labels.</li>
 </ul>
+<h2 id="why">Why?</h2>
+<p>Developing multiple containerized projects locally requires ensuring that each service exposes itself on a different port.  With multiple services that must work together, this typically leads to configuring CORS and inter-project routing via <code>host.docker.internal</code> or adding extra hosts that resolve to <code>host-gateway</code>.  Additionally, if projects use 3rd party services that require HTTPS communications, there may be errors and warnings for mixed-content.</p>
+<p>The goal is to allow services that reside in different project repositories (and different Docker networks) to operate in a similar manner to staging environments.  Furthermore, the local host should have the same capability to access exposed services.</p>
+<h2 id="how-it-works">How it works</h2>
+<p>Local Ingress provides an HTTP router (Traefik), TLS certificate management (StepCA), and DNS (CoreDNS).  The Traefik Docker provider monitors the Docker API to discover service containers and the request routing rules.  If the service container requires HTTPS, the service defition can enable certificate enrollment and optionally choose any domain(s) (including wildcard domains).  The local host is configured to use the DNS service for the <code>.test</code> TLD, which Docker automatically uses in the default resursive resolver.</p>
 
 
 
