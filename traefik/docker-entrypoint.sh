@@ -3,6 +3,7 @@
 set -e
 
 export CORE_DNS_ADDRESS="$(getent hosts coredns | awk '{ print $1 }')"
+export HOST_GATEWAY="$(getent hosts _gw | awk '{ print $1 }')"
 
 if [[ -d /docker-entrypoint-init.d ]]; then
   run-parts /docker-entrypoint-init.d

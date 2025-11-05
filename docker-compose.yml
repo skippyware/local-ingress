@@ -118,6 +118,8 @@ services:
       - "--log.level=${LOCAL_INGRESS_TRAEFIK_LOG_LEVEL:-WARN}"
       - "--core.defaultRuleSyntax=${LOCAL_INGRESS_TRAEFIK_RULE_SYNTAX:-v3}"
       - "--api.insecure=true"
+      - "--providers.file=true"
+      - "--providers.file.directory=/etc/traefik-providers/local-services"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--providers.docker.usebindportip=true"
@@ -139,9 +141,12 @@ services:
     networks:
       - default
       - ingress-net
+    extra_hosts:
+      - "_gw:host-gateway" # required to dynamically resolve the host gateway
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik/docker-entrypoint.sh:/docker-entrypoint.sh:ro
+      - ./traefik/local-services:/etc/traefik-providers/local-services:ro
       - traefik-acme-data:/etc/traefik/acme:rw
       - stepca-data:/stepca:ro
     depends_on:
